@@ -24,32 +24,32 @@ body {
   padding: 20px;
 }
 
- /* se maneja el texto del titulo "Calculando Infusiones" */
+/* Se maneja el texto del título "Calculando Infusiones" */
 h1 {
   font-size: 3rem;
-    position: fixed;
-    margin-bottom: 10px;
-    color: #ffffff;
-    text-shadow: 
+  position: fixed;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 
     1.9px 1.9px 1px #02273b,  
     -1px -1px 1px #02273b,  
     1.9px -1px 1px #02273b,
     -1px 1.9px 1px #02273b; /* Sombra blanca para simular el borde */
-    top: 5px;
-    left: 30%;  /* Alinea el texto al lado izquierdo */
-    transform: translateX(-50%);
-    text-align: right;
+  top: 5px;
+  left: 30%;  /* Alinea el texto al lado izquierdo */
+  transform: translateX(-50%);
+  text-align: right;
 }
 
-/* se maneja toda el container de medicamentos */
+/* Se maneja toda el container de medicamentos */
 .card-container {
   display: flex;
   flex-wrap: wrap;    /* Los elementos se envuelven */
   gap: 10px;         /* Espacio entre elementos */
-  margin-top: 50px;
+  margin-top: 150px; /* Espacio para la báscula fija y el título */
 }
 
-/* se maneja todas las cards de medicamentos*/
+/* Se maneja todas las cards de medicamentos */
 .card {
   background: #035785;
   border-radius: 10px;
@@ -66,7 +66,7 @@ h1 {
   transform: scale(1.05);
 }
 
-/* se maneja el titulo las cards de medicamentos*/
+/* Se maneja el título de las cards de medicamentos */
 .card h2 {
   margin-bottom: 10px;
   color: #FFFFFF;
@@ -76,52 +76,35 @@ h1 {
   text-overflow: ellipsis;
 }
 
-/* se maneja el subtitulo las cards de medicamentos*/
+/* Se maneja el subtítulo de las cards de medicamentos */
 .card .result {
   margin-top: 1px;
   font-size: 0.9rem;
   color: #ffffff;
 }
 
-
-/* Se maneja el container de la Bascula */
+/* Se maneja el container de la Báscula */
 .container5 {
   position: fixed;
-  top: 20px;
-  right: 0; /* Pegado al borde derecho */
-  transition: opacity 0.5s;
-  opacity: 0.9;
-}
-
-/* Se maneja el botón calcular de la Bascula */
-.card5 {
+  top: 80px; /* Debajo del título */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translateX(-50%); /* Centrado exacto */
   background: #ffffff;
   border-radius: 15px;
   box-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
   padding: 10px;
-  width: 80%; /* Ocupa el 100% del ancho en móviles */
+  width: 90%; /* Ocupa el 90% del ancho en móviles */
   max-width: 300px; /* Ancho máximo en pantallas grandes */
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   color: #035785;
-  transition: transform 0.2s;
-  display: flex;
-  flex-direction: column;
-  margin: auto; /* Centrado en pantallas grandes */
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
 
-/* Media Queries para pantallas pequeñas (móviles) */
-@media (max-width: 768px) {
-  .container5 {
-    right: 0; /* Pegado al borde derecho en móviles */
-    top: 10px; /* Menor margen en móviles */
-  }
-
-  .card5 {
-    width: 80%; /* Ocupa el 90% del ancho en móviles */
-    max-width: none; /* Elimina el ancho máximo en móviles */
-    font-size: 0.8rem; /* Reduce el tamaño de la fuente en móviles */
-  }
+/* Se maneja el botón calcular de la Báscula */
+.card5 {
+  width: 100%;
+  margin: auto; /* Centrado en pantallas grandes */
 }
 
 #pesoPaciente {
@@ -135,7 +118,7 @@ h1 {
   margin-bottom: 5px;
 }
 
-/* Maneja el Botón Calcular*/
+/* Maneja el Botón Calcular */
 button {
   padding: 10px;
   width: 100%;
@@ -157,17 +140,19 @@ button:hover {
   h1 {
     font-size: 2rem;
     top: 10px;
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%); /* Centrado exacto */
   }
 
   .card-container {
+    margin-top: 190px; /* Espacio para la báscula fija y el título */
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 10px; /* Espacio entre tarjetas */
   }
-  
 
   .card {
+    flex-basis: calc(50% - 5px); /* Dos tarjetas por fila */
     padding: 10px;
   }
 
@@ -180,8 +165,12 @@ button:hover {
   }
 
   .container5 {
-    top: 10px;
-    right: 10px;
+    top: 80px; /* Debajo del título */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%); /* Centrado exacto */
+    width: 90%; /* Ocupa el 90% del ancho en móviles */
+    max-width: none; /* Elimina el ancho máximo en móviles */
+    font-size: 0.8rem; /* Reduce el tamaño de la fuente en móviles */
   }
 
   .card5 {
@@ -198,16 +187,19 @@ button:hover {
   h1 {
     font-size: 1.5rem;
     top: 5px;
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%); /* Centrado exacto */
   }
 
   .card-container {
+    margin-top: 190px; /* Espacio para la báscula fija y el título */
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 10px; /* Espacio entre tarjetas */
   }
 
   .card {
+    flex-basis: calc(50% - 5px); /* Dos tarjetas por fila */
     padding: 8px;
   }
 
@@ -220,8 +212,12 @@ button:hover {
   }
 
   .container5 {
-    top: 5px;
-    right: 5px;
+    top: 65px; /* Debajo del título */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%); /* Centrado exacto */
+    width: 90%; /* Ocupa el 90% del ancho en móviles */
+    max-width: none; /* Elimina el ancho máximo en móviles */
+    font-size: 0.7rem; /* Reduce el tamaño de la fuente en móviles */
   }
 
   .card5 {

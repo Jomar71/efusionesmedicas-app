@@ -15,6 +15,7 @@ body {
   align-items: center;
   min-height: 100vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
 }
 
 .container {
@@ -136,6 +137,7 @@ button:hover {
 }
 
 /* Media Queries para dispositivos móviles */
+/* Para tablets */ 
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
@@ -148,7 +150,7 @@ button:hover {
     margin-top: 190px; /* Espacio para la báscula fija y el título */
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Espacio entre tarjetas */
+    gap: 5px; /* Espacio entre tarjetas */
   }
 
   .card {
@@ -183,6 +185,7 @@ button:hover {
   }
 }
 
+/* Estilos específicos para pantallas de 480px o menos, Para móviles pequeños */
 @media (max-width: 480px) {
   h1 {
     font-size: 1.5rem;
@@ -195,7 +198,7 @@ button:hover {
     margin-top: 190px; /* Espacio para la báscula fija y el título */
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Espacio entre tarjetas */
+    gap: 5px; /* Espacio entre tarjetas */
   }
 
   .card {
@@ -229,3 +232,4 @@ button:hover {
     font-size: 0.7rem;
   }
 }
+

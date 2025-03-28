@@ -5,7 +5,7 @@
 }
 
 body {
-  background-image: url(assets/IMAGENES/FONDO-DE-LA-APP.png);
+  background-image: url(assets/IMAGENES/FONDO-DE-LA-APP.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -15,7 +15,6 @@ body {
   align-items: center;
   min-height: 100vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  
 }
 
 .container {
@@ -31,13 +30,10 @@ h1 {
   position: fixed;
   margin-bottom: 10px;
   color: #ffffff;
-  text-shadow: 
-    1.9px 1.9px 1px #02273b,  
-    -1px -1px 1px #02273b,  
-    1.9px -1px 1px #02273b,
-    -1px 1.9px 1px #02273b; /* Sombra blanca para simular el borde */
+  text-shadow: 1.9px 1.9px 1px #02273b, -1px -1px 1px #02273b,
+    1.9px -1px 1px #02273b, -1px 1.9px 1px #02273b; /* Sombra blanca para simular el borde */
   top: 5px;
-  left: 30%;  /* Alinea el texto al lado izquierdo */
+  left: 30%; /* Alinea el texto al lado izquierdo */
   transform: translateX(-50%);
   text-align: right;
 }
@@ -45,8 +41,8 @@ h1 {
 /* Se maneja toda el container de medicamentos */
 .card-container {
   display: flex;
-  flex-wrap: wrap;    /* Los elementos se envuelven */
-  gap: 10px;         /* Espacio entre elementos */
+  flex-wrap: wrap; /* Los elementos se envuelven */
+  gap: 10px; /* Espacio entre elementos */
   margin-top: 150px; /* Espacio para la báscula fija y el título */
 }
 
@@ -70,7 +66,7 @@ h1 {
 /* Se maneja el título de las cards de medicamentos */
 .card h2 {
   margin-bottom: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.2rem;
   white-space: nowrap;
   overflow: hidden;
@@ -87,7 +83,7 @@ h1 {
 /* Se maneja el container de la Báscula */
 .container5 {
   position: fixed;
-  top: 80px; /* Debajo del título */
+  top: 85px; /* Debajo del título */
   left: 50%; /* Centrado horizontalmente */
   transform: translateX(-50%); /* Centrado exacto */
   background: #ffffff;
@@ -137,7 +133,7 @@ button:hover {
 }
 
 /* Media Queries para dispositivos móviles */
-/* Para tablets */ 
+/* Para tablets */
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
@@ -233,3 +229,58 @@ button:hover {
   }
 }
 
+
+
+/* Estilos del Footer */
+/* Footer Styling */
+.footer {
+  width: 100%;
+  background-color: #f4f4f4;
+  padding: 20px 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-content {
+  max-width: none;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.footer-credits {
+  text-align: center;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+.footer-credits h4 {
+  margin-bottom: 1px;
+  color: #2c3e50;
+  font-size: 15px;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.footer-credits p {
+  margin: 1px 0;
+  line-height: 1;
+  font-size: 13px;
+}
+
+.footer-credits strong {
+  color: #2980b9;
+  font-size: 13px;
+}
+
+.footer-credits em {
+  color: #8d817f;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.footer-credits .copyright {
+  margin-top: 0px;
+  font-size: 14px;
+  color: #a69a95;
+  border-top: 1px solid #bdc3c7;
+  padding-top: 10px;
+}

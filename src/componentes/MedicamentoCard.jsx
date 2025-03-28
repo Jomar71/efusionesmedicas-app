@@ -35,22 +35,35 @@ const MedicamentoCard = ({ med, conjuntoKey, medKey, pesoPte }) => {
         rataMin = (med.dosisMin * 60) / med.k;
         rataMax = (med.dosisMax * 60) / med.k;
         break;
+      case 'conjunto6':
+          rataMin = (med.dosisMax / med.k) * 60;
+          rataMax = (med.dosisMin / med.k) * 60;
+          break;
       default:
         rataMin = 0;
         rataMax = 0;
     }
   }
 
+  // Medicamentos específicos que usan toFixed(1)
+  const medicamentosEspecificos = ["amiodarona", "atropinaorganofosforado"];
+
+  // Verifica si el medicamento actual es uno de los específicos
+  const esMedicamentoEspecifico = medicamentosEspecificos.includes(medKey);
+
   return (
     <div className="card">
       <h2>{med.nombre}</h2>
       <div className="result">
         <p>
-          <strong>Rata Mínima:</strong> {rataMin.toFixed(1)} {med.unidad}
+          <strong>Rata Mínima:</strong>{" "}
+          {esMedicamentoEspecifico ? rataMin.toFixed(1) : rataMin.toFixed()} {med.unidad}
         </p>
         <p>
-          <strong>Rata Máxima:</strong> {rataMax.toFixed(1)} {med.unidad}
+          <strong>Rata Máxima:</strong>{" "}
+          {esMedicamentoEspecifico ? rataMax.toFixed(1) : rataMax.toFixed()} {med.unidad}
         </p>
+
       </div>
     </div>
   );

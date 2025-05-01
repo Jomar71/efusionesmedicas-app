@@ -1,76 +1,153 @@
-import React, { useState } from 'react';
-import MedicamentoCard from './components/MedicamentoCard';
-import Footer from './components/Footer';
+import React, { useState, useRef, useCallback, useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./Navbar";
+import MedicamentoCard from "./components/MedicamentoCard";
+import Footer from "./components/Footer";
 import {
-  anestesicos, antiarritmicos, anticolinergicos,
-  antihipertensivosaccionrapida, bnm, catecolaminas, vasoconstrictorinotropico
-} from './components/conjuntos';
-import './styles.css';
+  anestesicos,
+  antiarritmicos,
+  anticolinergicos,
+  antihipertensivosaccionrapida,
+  bnm,
+  catecolaminas,
+  vasoconstrictorinotropico,
+} from "./components/conjuntos";
+import "./styles.css";
+import "./Navbar.css";
+import "./Medicamentos.css";
+
 
 const App = () => {
-  const [pesoPte, setPesoPte] = useState(0);
-  const [pesoCalculado, setPesoCalculado] = useState(0);
+  const [pesoPte, setPesoPte] = useState("");
+  const [pesoCalculado, setPesoCalculado] = useState(null);
+  const [seccionActiva, setSeccionActiva] = useState("anestesicos");
+  const [error, setError] = useState("");
+  const sectionsRef = useRef({});
+  const calculatorRef = useRef(null);
+
+  // useEffect para scroll de báscula eliminado (manejado por CSS sticky)
+
+  const gruposMedicamentos = [
+    { id: "anestesicos", nombre: "Anestésicos" },
+    { id: "antiarritmicos", nombre: "Antiarrítmicos" },
+    { id: "anticolinergicos", nombre: "Anticolinérgicos" },
+    { id: "antihipertensivosaccionrapida", nombre: "Antihipertensivos" },
+    { id: "bnm", nombre: "BNM" },
+    { id: "catecolaminas", nombre: "Catecolaminas" },
+    { id: "vasoconstrictorinotropico", nombre: "Vasoconstrictores" },
+  ];
 
   const medicamentos = {
-    anestesicos: anestesicos,
-    antiarritmicos: antiarritmicos,
-    anticolinergicos: anticolinergicos,
-    antihipertensivosaccionrapida: antihipertensivosaccionrapida,
-    bnm: bnm,
-    catecolaminas: catecolaminas,
-    vasoconstrictorinotropico: vasoconstrictorinotropico
+    anestesicos,
+    antiarritmicos,
+    anticolinergicos,
+    antihipertensivosaccionrapida,
+    bnm,
+    catecolaminas,
+    vasoconstrictorinotropico,
   };
 
-  const handleCalcular = () => {
-    if (!pesoPte || pesoPte <= 0) {
-      alert("Por favor, ingrese un peso de paciente válido.");
+  const handleCalcular = useCallback((e) => {
+    e.preventDefault();
+    const peso = parseFloat(pesoPte);
+    
+    if (!peso || peso <= 0) {
+      setError("Por favor, ingrese un peso válido mayor a 0");
+      setPesoCalculado(null);
       return;
     }
-    setPesoCalculado(pesoPte);
-  };
-  return (
-    <div className="app-container">
-      <div className="content-wrap">
-        <h1>Calculadora Infusiones</h1>
+    
+    setError("");
+    setPesoCalculado(peso);
+    document.getElementById('pesoPaciente')?.focus();
+  }, [pesoPte]);
 
-        <div className="container5">
-          <div className="card5">
+  const handleSeccionChange = useCallback((seccion) => {
+    setSeccionActiva(seccion);
+    if (sectionsRef.current[seccion]) {
+      setTimeout(() => {
+        sectionsRef.current[seccion].scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, []);
+
+  const registerSection = useCallback((seccion, element) => {
+    if (element) {
+      sectionsRef.current[seccion] = element;
+    }
+  }, []);
+
+  return (
+    <Router>
+      <div className="app-container">
+        <Navbar 
+          onSeccionChange={handleSeccionChange} 
+          seccionActiva={seccionActiva}
+          gruposMedicamentos={gruposMedicamentos}
+        />
+        
+        {/* Báscula fija con sticky positioning */}
+        <div className="calculator-container" ref={calculatorRef}>
+          <form onSubmit={handleCalcular} className="calculator-card">
             <h2>Báscula</h2>
             <div className="form-group">
-              <label>Peso del Paciente (kg):</label>
+              <label htmlFor="pesoPaciente">Peso del Paciente (kg):</label>
               <input
                 type="number"
                 id="pesoPaciente"
-                placeholder="Ingrese peso"
+                placeholder="Ej: 70"
                 value={pesoPte}
-                onChange={(e) => {
-                  setPesoPte(parseFloat(e.target.value)); // Actualiza el estado temporal
-                  console.log("Peso actualizado:", e.target.value); // Depuración
-                }}
+                onChange={(e) => setPesoPte(e.target.value)}
+                min="0.1"
+                step="0.1"
+                className={error ? "input-error" : ""}
               />
+              {error && <div className="error-message">{error}</div>}
+              {pesoCalculado && (
+                <div className="success-message">
+                  Peso calculado: {pesoCalculado} kg
+                </div>
+              )}
             </div>
-            <button onClick={handleCalcular}>Calcular</button>
-          </div>
+            <button type="submit">Calcular</button>
+          </form>
         </div>
-
-        <div className="card-container">
-          {Object.entries(medicamentos).map(([conjuntoKey, conjunto]) =>
-            Object.entries(conjunto).map(([medKey, med]) => (
-              <MedicamentoCard
-                key={`${conjuntoKey}-${medKey}`}
-                med={med}
-                conjuntoKey={conjuntoKey}
-                medKey={medKey}
-                pesoPte={pesoCalculado} // Pasa el peso calculado a las tarjetas
-              />
-            ))
-          )}
-        </div>
+        
+        <main className="main-content">
+          {Object.entries(medicamentos).map(([conjuntoKey, conjunto]) => (
+            <section
+              key={conjuntoKey}
+              id={conjuntoKey}
+              className={`app-section ${seccionActiva === conjuntoKey ? "active" : ""}`}
+              ref={(el) => registerSection(conjuntoKey, el)}
+            >
+              <div className="section-container">
+                <h2 className="section-title">
+                  {gruposMedicamentos.find(g => g.id === conjuntoKey)?.nombre}
+                </h2>
+                <div className="medicamentos-grid">
+                  {Object.entries(conjunto).map(([medKey, med]) => (
+                    <MedicamentoCard
+                      key={`${conjuntoKey}-${medKey}`}
+                      med={med}
+                      conjuntoKey={conjuntoKey}
+                      medKey={medKey}
+                      pesoPte={pesoCalculado}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+          ))}
+        </main>
+        
+        <Footer />
       </div>
-      <Footer /> {/* Añade esto al final */}
-    </div>
+    </Router>
   );
 };
-
 
 export default App;

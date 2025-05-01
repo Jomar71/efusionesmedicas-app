@@ -1,0 +1,266 @@
+/* ===== VARIABLES GLOBALES Y COLORES DE MEDICAMENTOS ===== */
+:root {
+  --med-group-anestesicos: #2E86C1;
+  --med-group-antiarritmicos: #8E44AD;
+  --med-group-anticolinergicos: #F39C12;
+  --med-group-antihipertensivos: #C0392B;
+  --med-group-bnm: #27AE60;
+  --med-group-catecolaminas: #16A085;
+  --med-group-vasoconstrictores: #E74C3C;
+  
+  --primary-color: #035785;
+  --primary-hover: #004799;
+  --text-light: #ffffff;
+  --shadow-standard: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --border-radius: 10px;
+}
+
+
+/* ===== ESTRUCTURA BASE DEL NAVBAR ===== */
+/* Estilos globales como html, body, :target eliminados - Deben estar en styles.css */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.1s ease;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+/* Efecto al hacer scroll */
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor principal */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+/* ===== LOGO ===== */
+.navbar-logo a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2d4966;
+  text-decoration: none;
+  transition: color 0.3s;
+  white-space: nowrap;
+  margin-right: 90px; /* Empuja el logo a la izquierda */
+}
+
+.navbar-logo a:hover {
+  color: #0a629c;
+}
+
+
+.hamburguesa {
+  margin-left: 20px; /* Ajusta este valor según tu criterio */
+  cursor: pointer;
+}
+
+/* ===== MENÚ PRINCIPAL (DESKTOP) ===== */
+.navbar-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0 1rem;
+  position: relative;
+}
+
+.navbar-links a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  transition: color 0.3s;
+  display: inline-block;
+}
+.navbar-links a:hover {
+  color: #0a629c;
+}
+
+/* ===== COLORES POR GRUPO DE MEDICAMENTOS (NAVBAR) ===== */
+.navbar-links a[href="#anestesicos"] {
+  border-bottom: 3px solid var(--med-group-anestesicos);
+}
+.navbar-links a[href="#antiarritmicos"] {
+  border-bottom: 3px solid var(--med-group-antiarritmicos);
+}
+.navbar-links a[href="#anticolinergicos"] {
+  border-bottom: 3px solid var(--med-group-anticolinergicos);
+}
+.navbar-links a[href="#antihipertensivosaccionrapida"] {
+  border-bottom: 3px solid var(--med-group-antihipertensivos);
+}
+.navbar-links a[href="#bnm"] {
+  border-bottom: 3px solid var(--med-group-bnm);
+}
+.navbar-links a[href="#catecolaminas"] {
+  border-bottom: 3px solid var(--med-group-catecolaminas);
+}
+.navbar-links a[href="#vasoconstrictorinotropico"] {
+  border-bottom: 3px solid var(--med-group-vasoconstrictores);
+}
+
+/* Estilos de .app-section, .section-container, .section-title, .medicamentos-grid, .card, .calculator-card, .form-group, button, .main-content eliminados */
+/* Estos estilos deben estar en styles.css o Medicamentos.css */
+
+/* ===== MENÚ MÓVIL ===== */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #2c3e50;
+  padding: 0.5rem;
+}
+
+.mobile-menu {
+  background-color: #ffffff;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu.active {
+  max-height: 500px;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu li {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.mobile-menu a {
+  color: #293d52;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: block;
+  padding: 1rem 2rem;
+  transition: background-color 0.3s;
+}
+
+.mobile-menu a:hover {
+  background-color: #f8f9fa;
+}
+
+/* Colores para el menú móvil */
+.mobile-menu a[href="#anestesicos"] {
+  border-left: 4px solid var(--med-group-anestesicos);
+}
+.mobile-menu a[href="#antiarritmicos"] {
+  border-left: 4px solid var(--med-group-antiarritmicos);
+}
+.mobile-menu a[href="#anticolinergicos"] {
+  border-left: 4px solid var(--med-group-anticolinergicos);
+}
+.mobile-menu a[href="#antihipertensivosaccionrapida"] {
+  border-left: 4px solid var(--med-group-antihipertensivos);
+}
+.mobile-menu a[href="#bnm"] {
+  border-left: 4px solid var(--med-group-bnm);
+}
+.mobile-menu a[href="#catecolaminas"] {
+  border-left: 4px solid var(--med-group-catecolaminas);
+}
+.mobile-menu a[href="#vasoconstrictorinotropico"] {
+  border-left: 4px solid var(--med-group-vasoconstrictores);
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 992px) {
+  .navbar-links {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .navbar-container {
+    padding: 1rem;
+  }
+  
+  /* Estilos de .medicamentos-grid eliminados de media query */
+}
+
+@media (max-width: 768px) {
+  /* Estilos de .main-content, .calculator-card, .form-group, button, .section-title, .card, .medicamentos-grid eliminados de media query */
+}
+
+@media (max-width: 480px) {
+  /* Estilos de .main-content, .calculator-card, .form-group eliminados de media query */
+  .form-group input, #pesoPaciente {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+  
+  button {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .medicamentos-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .card {
+    padding: 10px;
+  }
+  
+  .card h2 {
+    font-size: 0.9rem;
+  }
+  
+  .card .result {
+    font-size: 0.7rem;
+  }
+  
+  .navbar-container {
+    padding: 0.8rem;
+  }
+  
+  .navbar-logo a {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 993px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+

@@ -1,286 +1,266 @@
+/* ===== RESET Y ESTILOS BASE ===== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
 body {
-  background-image: url(assets/IMAGENES/FONDO-DE-LA-APP.webp);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-color: #f4f4f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
 }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  text-align: center;
-  padding: 20px;
-}
-
-/* Se maneja el texto del título "Calculando Infusiones" */
-h1 {
-  font-size: 3rem;
-  position: fixed;
-  margin-bottom: 10px;
-  color: #ffffff;
-  text-shadow: 1.9px 1.9px 1px #02273b, -1px -1px 1px #02273b,
-    1.9px -1px 1px #02273b, -1px 1.9px 1px #02273b; /* Sombra blanca para simular el borde */
-  top: 5px;
-  left: 30%; /* Alinea el texto al lado izquierdo */
-  transform: translateX(-50%);
-  text-align: right;
-}
-
-/* Se maneja toda el container de medicamentos */
-.card-container {
-  display: flex;
-  flex-wrap: wrap; /* Los elementos se envuelven */
-  gap: 10px; /* Espacio entre elementos */
-  margin-top: 150px; /* Espacio para la báscula fija y el título */
-}
-
-/* Se maneja todas las cards de medicamentos */
-.card {
-  background: #035785;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 15px;
-  text-align: left;
-  transition: transform 0.2s;
+/* ===== ESTRUCTURA PRINCIPAL ===== */
+.app-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Alinea el contenido verticalmente */
+  min-height: 100vh;
+  padding-top: 220px; /* Espacio para Navbar (60px) + Báscula (~150px) + margen */
 }
 
-.card:hover {
-  transform: scale(1.05);
-}
-
-/* Se maneja el título de las cards de medicamentos */
-.card h2 {
-  margin-bottom: 10px;
-  color: #ffffff;
-  font-size: 1.2rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Se maneja el subtítulo de las cards de medicamentos */
-.card .result {
-  margin-top: 1px;
-  font-size: 0.9rem;
-  color: #ffffff;
-}
-
-/* Se maneja el container de la Báscula */
-.container5 {
+/* ===== NAVBAR ===== */
+.navbar {
   position: fixed;
-  top: 85px; /* Debajo del título */
-  left: 50%; /* Centrado horizontalmente */
-  transform: translateX(-50%); /* Centrado exacto */
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
-  padding: 10px;
-  width: 90%; /* Ocupa el 90% del ancho en móviles */
-  max-width: 300px; /* Ancho máximo en pantallas grandes */
-  text-align: center;
-  font-size: 0.8rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 60px;
+  background-color: #cedfeb;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+/* ===== BÁSCULA/CALCULADORA ===== */
+.calculator-container {
+  position: sticky;
+  top: 60px; /* Ajustado a la altura inicial del navbar */
+  z-index: 999;
+  background: transparent; /* Cambiado 0 por transparent */
+  backdrop-filter: blur(5px);
+  padding: 1rem 0;
+  box-shadow: 0;
+  border-bottom: 0;
+}
+
+.calculator-card {
+  max-width: 350px;
+  margin: 0;
+  padding: 1.5rem;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  top: 0;  /* Debajo del navbar */
+}
+/* ===== TEXTO: BÁSCULA ===== */
+.calculator-card h2 {
   color: #035785;
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  margin-bottom: 0rem;
+  text-align: center;
+  font-size: 1.3rem;
 }
 
-/* Se maneja el botón calcular de la Báscula */
-.card5 {
-  width: 100%;
-  margin: auto; /* Centrado en pantallas grandes */
-}
-
-#pesoPaciente {
-  width: 100%;
-  margin: 5px auto 0;
-  font-size: 0.9rem;
-  padding: 0px;
-}
-
+/* ===== FORMULARIO ===== */
 .form-group {
-  margin-bottom: 5px;
+  margin-bottom: 0rem;
 }
 
-/* Maneja el Botón Calcular */
-button {
-  padding: 10px;
+/* ===== TEXTO: PESO DEL PACIENTE ===== */
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.form-group input {
   width: 100%;
-  margin-top: 0px;
-  background-color: #0077b6;
-  color: #fff;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #035785;
+}
+
+/* ===== TEXTO: INGRESE UN PESO VALIDO- ===== */
+.input-error {
+  border-color: #e74c3c !important;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* ===== TEXTO: INGRESE UN PESO VALIDO- ===== */
+.success-message {
+  color: #27ae60;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* ===== TEXTO Y BOTON: CALCULAR ===== */
+button {
+  background-color: #035785;
+  color: white;
   border: none;
+  padding: 0.5rem;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1.3rem;
+  width: 100%;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #004799;
+  background-color: #26546e;
 }
 
-/* Media Queries para dispositivos móviles */
-/* Para tablets */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
-    top: 10px;
-    left: 50%; /* Centrado horizontalmente */
-    transform: translateX(-50%); /* Centrado exacto */
-  }
-
-  .card-container {
-    margin-top: 190px; /* Espacio para la báscula fija y el título */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px; /* Espacio entre tarjetas */
-  }
-
-  .card {
-    flex-basis: calc(50% - 5px); /* Dos tarjetas por fila */
-    padding: 10px;
-  }
-
-  .card h2 {
-    font-size: 1rem;
-  }
-
-  .card .result {
-    font-size: 0.8rem;
-  }
-
-  .container5 {
-    top: 80px; /* Debajo del título */
-    left: 50%; /* Centrado horizontalmente */
-    transform: translateX(-50%); /* Centrado exacto */
-    width: 90%; /* Ocupa el 90% del ancho en móviles */
-    max-width: none; /* Elimina el ancho máximo en móviles */
-    font-size: 0.8rem; /* Reduce el tamaño de la fuente en móviles */
-  }
-
-  .card5 {
-    padding: 10px;
-    font-size: 0.8rem;
-  }
-
-  #pesoPaciente {
-    font-size: 0.8rem;
-  }
-}
-
-/* Estilos específicos para pantallas de 480px o menos, Para móviles pequeños */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
-    top: 5px;
-    left: 50%; /* Centrado horizontalmente */
-    transform: translateX(-50%); /* Centrado exacto */
-  }
-
-  .card-container {
-    margin-top: 190px; /* Espacio para la báscula fija y el título */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px; /* Espacio entre tarjetas */
-  }
-
-  .card {
-    flex-basis: calc(50% - 5px); /* Dos tarjetas por fila */
-    padding: 8px;
-  }
-
-  .card h2 {
-    font-size: 0.9rem;
-  }
-
-  .card .result {
-    font-size: 0.7rem;
-  }
-
-  .container5 {
-    top: 65px; /* Debajo del título */
-    left: 50%; /* Centrado horizontalmente */
-    transform: translateX(-50%); /* Centrado exacto */
-    width: 90%; /* Ocupa el 90% del ancho en móviles */
-    max-width: none; /* Elimina el ancho máximo en móviles */
-    font-size: 0.7rem; /* Reduce el tamaño de la fuente en móviles */
-  }
-
-  .card5 {
-    padding: 8px;
-    font-size: 0.7rem;
-  }
-
-  #pesoPaciente {
-    font-size: 0.7rem;
-  }
+/* ===== CONTENIDO PRINCIPAL DE LOS CONJUNTOS===== */
+.main-content {
+  flex: 1;
+  padding: 0.9rem 0;
+  background-color: transparent; /* Fondo general transparente */
+  position: relative;
+  z-index: 1;  /* Asegura que el contenido esté detrás de elementos fijos */
 }
 
 
 
-/* Estilos del Footer */
-/* Footer Styling */
+.app-section {
+  padding: 0.9rem 0;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+} /* Cierre de .section-container */
+
+.section-title {
+  color: #035785;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #035785;
+  font-size: 1.8rem;
+}
+
+.medicamentos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===== FOOTER ===== */
 .footer {
-  width: 100%;
-  background-color: #f4f4f4;
-  padding: 20px 0;
-  border-top: 1px solid #e0e0e0;
+  /* position: fixed; Comentado para que fluya al final */
+  /* bottom: 0; */
+  /* left: 0; */
+  right: 0;        /* Ocupa todo el ancho */
+  padding: 1rem;   /* Espaciado interno */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+  z-index: 100;    /* Asegura que esté por encima del contenido */
+  background: #035785;
+  color: white;
+  padding: 0.3rem 0;
+  margin-top: 2rem;
 }
 
 .footer-content {
+  width: 100vw;
   max-width: none;
   margin: 0 auto;
-  padding: 0 15px;
-}
-
-.footer-credits {
+  padding: 0 1.5rem;
   text-align: center;
-  color: #333;
-  font-family: Arial, sans-serif;
+  font-size: 11px;
 }
 
-.footer-credits h4 {
-  margin-bottom: 1px;
-  color: #2c3e50;
-  font-size: 15px;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 992px) {
+
+  .app-container {
+    padding-top: 130px;
+  }
+  
+  .main-content {
+    padding: 0.8rem 0;
+  }
+  .calculator-container {
+    padding: 0.8rem;
+  }
+  
+  .calculator-card {
+    max-width: 100%;
+  }
+  
+  .medicamentos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 }
 
-.footer-credits p {
-  margin: 1px 0;
-  line-height: 1;
-  font-size: 13px;
+@media (max-width: 768px) {
+  .app-container {
+    padding-top: 120px;
+  }
+  
+  .main-content {
+    padding: 0.7rem 0;
+  }
+  
+  .calculator-container {
+    top: 60px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
 }
 
-.footer-credits strong {
-  color: #2980b9;
-  font-size: 13px;
+@media (max-width: 576px) {
+  .app-container {
+    padding-top: 110px;
+  }
+  
+  .main-content {
+    padding: 0.6rem 0;
+  }
+  
+  .calculator-card {
+    padding: 1rem;
+  }
+  
+  .medicamentos-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .navbar {
+    padding: 0 1rem;
+    height: 50px;
+  }
+  
+  .calculator-container {
+    top: 50px;
+  }
 }
-
-.footer-credits em {
-  color: #8d817f;
-  font-style: italic;
-  font-size: 13px;
-}
-
-.footer-credits .copyright {
-  margin-top: 0px;
-  font-size: 14px;
-  color: #a69a95;
-  border-top: 1px solid #bdc3c7;
-  padding-top: 10px;
+/* Ajuste para compensar el Navbar fijo al hacer scroll a secciones */
+.app-section {
+  scroll-margin-top: 150px; /* Altura Navbar (60px) + Báscula (~80px) + margen */
 }

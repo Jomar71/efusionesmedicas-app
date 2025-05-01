@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Footer = () => {
   return (
     <div className="footer">
@@ -13,8 +14,10 @@ const Footer = () => {
           <p className="copyright">© {new Date().getFullYear()} jomar71</p>
         </div>
       </div>
+      <section class="spikes"></section>
     </div>
   );
 };
 
 export default Footer;
+

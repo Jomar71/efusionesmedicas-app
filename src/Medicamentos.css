@@ -1,0 +1,198 @@
+/* ===== VARIABLES PARA PERSONALIZACIÓN ===== */
+:root {
+  /* Colores base */
+  --med-card-bg: #ffffff;
+  --med-card-text: #2c3e50;
+  --med-card-border: #e0e0e0;
+  --med-card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+
+  /* Tamaños */
+  /* --med-card-width: 280px; Eliminado - Se usará width: 100% */
+  --med-card-padding: 1.2rem;
+  --med-card-border-radius: 10px;
+
+  /* Efectos */
+  --med-card-hover-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  --med-card-transition: all 0.3s ease;
+}
+
+/* ===== ESTILOS BASE DE LAS CARDS ===== */
+.medicamento-card {
+  background: var(--med-card-bg);
+  color: var(--med-card-text);
+  border: 1px solid var(--med-card-border);
+  border-radius: var(--med-card-border-radius);
+  box-shadow: var(--med-card-shadow);
+  width: 100%; /* Cambiado para llenar la celda del grid */
+  padding: var(--med-card-padding);
+  margin: 0.5rem 0; /* Ajustado margen horizontal a 0 */
+  transition: var(--med-card-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.medicamento-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--med-card-hover-shadow);
+}
+
+/* Partes de la card */
+.medicamento-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.medicamento-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem 0;
+  color: inherit;
+}
+
+.medicamento-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  color: inherit;
+}
+
+.medicamento-body {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+}
+
+.medicamento-dosis {
+  display: block;
+  font-weight: 600;
+  color: #2980b9;
+  margin: 0.8rem 0;
+}
+
+.medicamento-card .dosis-calculada {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2ecc71;
+  margin-top: 0.5rem;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== ESTILOS PARA PRECAUCIONES ===== */
+.medicamento-warning {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-left: 3px solid #e74c3c;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.medicamento-warning-text {
+  color: #c0392b;
+  font-size: 0.8rem;
+}
+
+/* ===== VARIANTES POR CONJUNTO ===== */
+/* Anestésicos */
+.medicamento-card.anestesicos {
+  --med-card-bg: #f8f5ff;
+  --med-card-text: #6a3093;
+  --med-card-border: #d6b3ff;
+}
+
+/* Antiarrítmicos */
+.medicamento-card.antiarritmicos {
+  --med-card-bg: #fff5f5;
+  --med-card-text: #c0392b;
+  --med-card-border: #ffb3b3;
+}
+
+/* Anticolinérgicos */
+.medicamento-card.anticolinergicos {
+  --med-card-bg: #f0f8ff;
+  --med-card-text: #2980b9;
+  --med-card-border: #b3d9ff;
+}
+
+/* Antihipertensivos */
+.medicamento-card.antihipertensivos {
+  --med-card-bg: #f0fff4;
+  --med-card-text: #2e7d32;
+  --med-card-border: #b3ffc2;
+}
+
+/* BNM */
+.medicamento-card.bnm {
+  --med-card-bg: #fffaf0;
+  --med-card-text: #d97706;
+  --med-card-border: #ffdfb3;
+}
+
+/* Catecolaminas */
+.medicamento-card.catecolaminas {
+  --med-card-bg: #f0fdf4;
+  --med-card-text: #047857;
+  --med-card-border: #b3ffd9;
+}
+
+/* Vasoconstrictores */
+.medicamento-card.vasoconstrictores {
+  --med-card-bg: #fef2f2;
+  --med-card-text: #b91c1c;
+  --med-card-border: #ffb3b3;
+}
+
+/* ===== EFECTOS ESPECIALES ===== */
+.medicamento-card.highlight {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.medicamento-card.critical {
+  border-left: 4px solid #e74c3c;
+}
+
+.medicamento-card.warning {
+  border-left: 4px solid #f39c12;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  :root {
+    /* --med-card-width: 100%; Eliminado */
+    --med-card-padding: 1rem; /* Padding ajustado para pantallas pequeñas */
+  }
+
+  /* Regla .medicamento-card eliminada de aquí, los ajustes se aplican a través de variables */
+}
+
+/* Efecto de hover para escalar la tarjeta */
+.medicamento-card {
+  transition: transform 0.3s ease-in-out;
+}
+
+.medicamento-card:hover {
+  transform: scale(1.1);
+}
